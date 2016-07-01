@@ -1,4 +1,23 @@
 {
   "name": "Casper",
-  "version": "1.3.0"
+  "version": "1.3.0",
+  "scripts": {
+    "scss": "node-sass --output-style compressed -o dist/css assets/sass",
+    "uglify": "mkdir -p dist/js && uglifyjs assets/js/*.js -m -o dist/js/app.js",
+    "autoprefixer": "postcss -u autoprefixer -r dist/css/*",
+    "build:css": "npm run scss && npm run autoprefixer",
+    "build:js": "npm run uglify",
+    "watch:css": "onchange 'assets/scss/*.scss' 'assets/css/*.css' -- npm run build:css",
+    "watch:js": "onchange 'assets/js/*.js' -- npm run build:js",
+    "build": "npm-run-all build:*",
+    "watch": "npm-run-all --parallel serve watch:*"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.6",
+    "node-sass": "^3.8.0",
+    "npm-run-all": "^2.3.0",
+    "onchange": "^2.5.0",
+    "postcss-cli": "^2.5.2",
+    "uglify-js": "^2.6.4"
+  }
 }
