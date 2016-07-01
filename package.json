@@ -1,14 +1,18 @@
 {
   "name": "Casper",
   "version": "1.3.0",
+  "config": {
+    "src": "assets",
+    "dist": "assets/dist"
+  },
   "scripts": {
-    "scss": "node-sass --output-style compressed -o dist/css assets/sass",
-    "uglify": "mkdir -p dist/js && uglifyjs assets/js/*.js -m -o dist/js/app.js",
-    "autoprefixer": "postcss -u autoprefixer -r dist/css/*",
+    "scss": "node-sass --output-style compressed -o $npm_package_config_dist/css $npm_package_config_src/sass",
+    "uglify": "mkdir -p $npm_package_config_dist/js && uglifyjs $npm_package_config_src/js/*.js -m -o $npm_package_config_dist/js/app.js",
+    "autoprefixer": "postcss -u autoprefixer -r $npm_package_config_dist/css/*",
     "build:css": "npm run scss && npm run autoprefixer",
     "build:js": "npm run uglify",
-    "watch:css": "onchange 'assets/sass/*.scss' 'assets/css/*.css' -- npm run build:css",
-    "watch:js": "onchange 'assets/js/*.js' -- npm run build:js",
+    "watch:css": "onchange '$npm_package_config_src/sass/*.scss' '$npm_package_config_src/css/*.css' -- npm run build:css",
+    "watch:js": "onchange '$npm_package_config_src/js/*.js' -- npm run build:js",
     "build": "npm-run-all --parallel build:*",
     "watch": "npm-run-all --parallel watch:*"
   },
