@@ -8,8 +8,7 @@
   "scripts": {
     "scss": "node-sass --output-style compressed -o $npm_package_config_dist/css $npm_package_config_src/sass",
     "uglify": "mkdir -p $npm_package_config_dist/js && uglifyjs $npm_package_config_src/js/*.js -m -o $npm_package_config_dist/js/app.js",
-    "autoprefixer": "postcss -u autoprefixer -r $npm_package_config_dist/css/*",
-    "build:css": "npm run scss && npm run autoprefixer",
+    "build:css": "npm run scss",
     "build:js": "npm run uglify",
     "watch:css": "onchange '$npm_package_config_src/sass/*.scss' '$npm_package_config_src/css/*.css' -- npm run build:css",
     "watch:js": "onchange '$npm_package_config_src/js/*.js' -- npm run build:js",
@@ -17,7 +16,6 @@
     "watch": "npm-run-all --parallel watch:*"
   },
   "devDependencies": {
-    "autoprefixer": "^6.3.6",
     "node-sass": "^3.8.0",
     "npm-run-all": "^2.3.0",
     "onchange": "^2.5.0",
