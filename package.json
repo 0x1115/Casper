@@ -8,7 +8,8 @@
   "scripts": {
     "scss": "node-sass --output-style compressed -o $npm_package_config_dist/css $npm_package_config_src/sass",
     "uglify": "mkdir -p $npm_package_config_dist/js && uglifyjs $npm_package_config_src/js/*.js -m -o $npm_package_config_dist/js/app.js",
-    "build:css": "npm run scss",
+    "fonts": "cp -ar $npm_package_config_src/fonts $npm_package_config_dist/fonts",
+    "build:css": "npm run scss && npm run fonts",
     "build:js": "npm run uglify",
     "watch:css": "onchange '$npm_package_config_src/sass/*.scss' '$npm_package_config_src/css/*.css' -- npm run build:css",
     "watch:js": "onchange '$npm_package_config_src/js/*.js' -- npm run build:js",
