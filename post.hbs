@@ -5,6 +5,15 @@
 
 {{!-- Everything inside the #post tags pulls data from the post --}}
 {{#post}}
+{{!-- Facebook Comments --}}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1753334978244416";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <header class="main-header post-head {{#if image}}" style="background-image: url({{image}}){{else}}no-cover{{/if}}">
     <nav class="main-nav {{#if image}}overlay{{/if}} clearfix">
@@ -81,7 +90,7 @@
                 <span class="gh-subscribe-rss">or subscribe <a href="http://cloud.feedly.com/#subscription/feed/{{@blog.url}}/rss/">via RSS</a> with Feedly!</span>
             </section>
             {{/if}}
-
+            <div class="fb-comments" data-href="{{url absolute="true"}}" data-numposts="5" data-width="100%"></div>
         </footer>
 
     </article>
